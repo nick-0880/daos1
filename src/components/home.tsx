@@ -73,13 +73,15 @@ const HomePage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-full"
-          >
-            Explore Marketplace
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Button>
+          <Link to="/marketplace">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-8 rounded-full"
+            >
+              Explore Marketplace
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </Button>
+          </Link>
         </motion.div>
       </section>
 

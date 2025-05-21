@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, Filter, ArrowUpDown } from "lucide-react";
+import { Search } from "lucide-react";
 import TokenGrid from "../components/TokenGrid";
-import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../components/ui/dropdown-menu";
 
 interface Token {
   id: string;
@@ -87,11 +80,6 @@ const MarketplacePage = () => {
     },
   ]);
 
-  const sortTokens = (criteria: "price" | "marketCap" | "change24h") => {
-    const sortedTokens = [...tokens].sort((a, b) => b[criteria] - a[criteria]);
-    setTokens(sortedTokens);
-  };
-
   const filteredTokens = tokens.filter(
     (token) =>
       token.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -122,14 +110,6 @@ const MarketplacePage = () => {
               Marketplace
             </Link>
           </nav>
-          <div>
-            <Button
-              variant="outline"
-              className="border-purple-500 text-purple-500 hover:bg-purple-950 hover:text-white"
-            >
-              Connect Wallet
-            </Button>
-          </div>
         </div>
       </header>
 
@@ -145,8 +125,8 @@ const MarketplacePage = () => {
           </p>
         </div>
 
-        {/* Search and Filter */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
+        {/* Search */}
+        <div className="mb-8">
           <div className="relative w-full md:w-96">
             <Search
               className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"
@@ -159,39 +139,6 @@ const MarketplacePage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-          </div>
-          <div className="flex gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="border-gray-800 bg-gray-900 text-white hover:bg-gray-800"
-                >
-                  <Filter size={16} className="mr-2" />
-                  Filter & Sort
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-gray-900 border-gray-800 text-white">
-                <DropdownMenuItem
-                  onClick={() => sortTokens("price")}
-                  className="hover:bg-gray-800 cursor-pointer"
-                >
-                  <ArrowUpDown size={16} className="mr-2" /> Sort by Price
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => sortTokens("marketCap")}
-                  className="hover:bg-gray-800 cursor-pointer"
-                >
-                  <ArrowUpDown size={16} className="mr-2" /> Sort by Market Cap
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => sortTokens("change24h")}
-                  className="hover:bg-gray-800 cursor-pointer"
-                >
-                  <ArrowUpDown size={16} className="mr-2" /> Sort by 24h Change
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
           </div>
         </div>
 
